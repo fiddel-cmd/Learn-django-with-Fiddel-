@@ -9,9 +9,6 @@ This repository contains my journey learning Django and backend web development.
 - Learn URLs, views and templates
 - Learn Django models and ORM
 - Learn PostgreSQL integration
-- Build CRUD applications
-- Learn authentication
-- Learn Django REST Framework
 - Connect Django with React
 
 ## Learning Path
@@ -26,3 +23,7 @@ This repository contains my journey learning Django and backend web development.
 8. Django REST Framework
 9. React + Django
 10. Full-stack projects
+ Build CRUD applications
+- Learn authentication
+- Learn Django REST Framework
+-

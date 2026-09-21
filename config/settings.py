@@ -25,6 +25,9 @@ SECRET_KEY = 'django-insecure-03rk2j_!+*0t^-bovtn#k8giedb+5#1rzghgaxcuze$+l77oy@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
+
+
 ALLOWED_HOSTS = []
 
 
@@ -37,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'student_portal'
+
 ]
 
 MIDDLEWARE = [
