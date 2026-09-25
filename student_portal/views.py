@@ -4,4 +4,9 @@ from django.shortcuts import render
 
 # Create your views here.
 def home(request):
-    return render (request,"student_portal/home.html")
+    context = {
+        "student_name" :"Brian",
+        "student_Course" :"BBIT"
+
+    }
+    return render (request,"student_portal/home.html",context)
