@@ -9,4 +9,4 @@ def home(request):
         "student_Course" :"BBIT"
 
     }
-    return render (request,"student_portal/home.html",context)
+    return render (request,"home.html",context)
