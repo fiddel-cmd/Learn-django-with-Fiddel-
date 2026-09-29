@@ -1,10 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
-from django.urls import include, path
+from .models import Student
 
-urlpatterns =  [
 
-    path('admin/',admin.site.urls),
-    path('',include('student_portal.urls'))
-]
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ("name", "registration_number", "email", "course")
+    search_fields = ("name", "registration_number", "email", "course")

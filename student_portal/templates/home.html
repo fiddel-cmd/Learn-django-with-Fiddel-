@@ -8,13 +8,20 @@
 <body>
     <h1>Welcome to the student portal</h1>
 
-    <p>This is my first Django project</p>
-    <p> Hello {{student_name}} welcome to the student portal.<p>
+    <p>This is my first Django project.</p>
 
-    <p>Student name :{{student_name}}</p>
-    <p>Student name :{{student_Course}}</p>
-    <p>The course {{student_Course}} as per now is full.<p>
-
-
-    
+    <h2>Students</h2>
+    {% if students %}
+        <ul>
+            {% for student in students %}
+                <li>
+                    {{ student.name }} - {{ student.registration_number }}
+                    ({{ student.course }})
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No students have been registered yet.</p>
+    {% endif %}
 </body>
+</html>

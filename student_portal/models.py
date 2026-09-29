@@ -5,6 +5,7 @@ class Student(models.Model):
     name = models.CharField(max_length=100)
     registration_number = models.CharField(max_length=100)
     email = models.EmailField()
-    course  =models.CharField(max_length=100)
-def __str__(self):
-    return self.name
+    course = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
