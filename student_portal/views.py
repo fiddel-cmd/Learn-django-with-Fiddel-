@@ -1,5 +1,5 @@
 
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import StudentForm
 from .models import Student
@@ -12,6 +12,17 @@ def home(request):
 
 def create_student(request):
     form = StudentForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('home')
+
+    return render(request, 'student_form.html', {'form': form})
+
+
+def update_student(request, student_id):
+    student = get_object_or_404(Student, pk=student_id)
+    form = StudentForm(request.POST or None, instance=student)
+
     if request.method == 'POST' and form.is_valid():
         form.save()
         return redirect('home')

@@ -34,3 +34,25 @@ class StudentCreateViewTests(TestCase):
 
 		self.assertEqual(response.status_code, 302)
 		self.assertTrue(Student.objects.filter(name="Lina", email="lina@example.com").exists())
+
+
+class StudentUpdateViewTests(TestCase):
+	def test_edit_student_view_updates_existing_student(self):
+		student = Student.objects.create(
+			name="Lina",
+			registration_number="ST-003",
+			email="lina@example.com",
+			course="Django",
+		)
+
+		response = self.client.post(f"/edit/{student.pk}/", {
+			"name": "Lina Updated",
+			"registration_number": "ST-003",
+			"email": "lina.updated@example.com",
+			"course": "Django REST Framework",
+		})
+
+		self.assertEqual(response.status_code, 302)
+		student.refresh_from_db()
+		self.assertEqual(student.name, "Lina Updated")
+		self.assertEqual(student.email, "lina.updated@example.com")
