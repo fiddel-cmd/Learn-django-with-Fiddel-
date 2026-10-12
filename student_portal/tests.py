@@ -21,3 +21,16 @@ class HomeViewTests(TestCase):
 		self.assertContains(response, "Amina")
 		self.assertContains(response, "Zuri")
 		self.assertLess(response.content.index(b"Amina"), response.content.index(b"Zuri"))
+
+
+class StudentCreateViewTests(TestCase):
+	def test_create_student_view_saves_a_new_student(self):
+		response = self.client.post("/create/", {
+			"name": "Lina",
+			"registration_number": "ST-003",
+			"email": "lina@example.com",
+			"course": "Django",
+		})
+
+		self.assertEqual(response.status_code, 302)
+		self.assertTrue(Student.objects.filter(name="Lina", email="lina@example.com").exists())
