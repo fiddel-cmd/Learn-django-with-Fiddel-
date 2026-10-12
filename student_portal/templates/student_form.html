@@ -3,17 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>{% if form.instance.pk %}Update Student{% else %}Add Student{% endif %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+            line-height: 1.6;
+            background: #f5f7fb;
+            color: #1f2937;
+        }
+        h1 {
+            color: #111827;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .link-row {
+            margin-top: 12px;
+        }
+        a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Add a student</h1>
+    <h1>{% if form.instance.pk %}Update student{% else %}Add a student{% endif %}</h1>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save student</button>
+        <button type="submit">{% if form.instance.pk %}Save changes{% else %}Save student{% endif %}</button>
     </form>
 
-    <p><a href="{% url 'student-list' %}">Back to students</a></p>
+    <p class="link-row"><a href="{% url 'home' %}">Back to students</a></p>
 </body>
 </html>
