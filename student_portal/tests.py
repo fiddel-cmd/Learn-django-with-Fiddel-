@@ -56,3 +56,32 @@ class StudentUpdateViewTests(TestCase):
 		student.refresh_from_db()
 		self.assertEqual(student.name, "Lina Updated")
 		self.assertEqual(student.email, "lina.updated@example.com")
+
+
+class StudentDeleteViewTests(TestCase):
+	def test_get_shows_confirmation_without_deleting_student(self):
+		student = Student.objects.create(
+			name="Lina",
+			registration_number="ST-003",
+			email="lina@example.com",
+			course="Django",
+		)
+
+		response = self.client.get(f"/delete/{student.pk}/")
+
+		self.assertEqual(response.status_code, 200)
+		self.assertContains(response, "Lina")
+		self.assertTrue(Student.objects.filter(pk=student.pk).exists())
+
+	def test_post_deletes_student_and_redirects_home(self):
+		student = Student.objects.create(
+			name="Lina",
+			registration_number="ST-003",
+			email="lina@example.com",
+			course="Django",
+		)
+
+		response = self.client.post(f"/delete/{student.pk}/")
+
+		self.assertRedirects(response, "/")
+		self.assertFalse(Student.objects.filter(pk=student.pk).exists())

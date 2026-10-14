@@ -72,6 +72,7 @@
                     <strong>{{ student.name }}</strong>
                     <span class="student-meta">- {{ student.registration_number }} | {{ student.course }}</span>
                     <a href="{% url 'student-edit' student.pk %}">Edit</a>
+                    <a href="{% url 'student-delete' student.pk %}">Delete</a>
                 </li>
             {% endfor %}
         </ul>
