@@ -1,4 +1,5 @@
 
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 
 from .forms import StudentForm
@@ -28,3 +29,9 @@ def update_student(request, student_id):
         return redirect('home')
 
     return render(request, 'student_form.html', {'form': form})
+
+def serialize(request):
+    return JsonResponse({
+        "Title": "ICT-Team",
+        "Issue": "NetworkIsuue",
+    })
